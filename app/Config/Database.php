@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => '',
+        'database' => 'tokobuah',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

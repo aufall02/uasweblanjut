@@ -14,7 +14,7 @@
   <header>
     <?= $this->include('template/navbar') ?>
   </header>
-  <div class="mx-5 mt-3">
+  <div class="mx-5 mt-3 vh-100">
     <?= $this->renderSection('content') ?>
   </div>
 

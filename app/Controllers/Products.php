@@ -122,10 +122,14 @@ class Products extends BaseController
 
     public function delete($id)
     { 
-        
+        //cari gambar berdasarkan id
+        $product = $this->productsModel->find($id);
+
+
+        //hapus gambar
+        unlink('img/' . $product['image']);
+
         // Kode untuk menghapus data dari database akan dituliskan di sini
-
-
         $this->productsModel->delete($id);
         session()->setFlashdata('pesan', 'berhasil hapus data');
         return redirect()->to('/products');

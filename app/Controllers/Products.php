@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ProductsModel;
-use CodeIgniter\HTTP\Request;
 
 class Products extends BaseController
 {
@@ -13,6 +12,7 @@ class Products extends BaseController
 
     public function __construct()
     {
+        //memanggil model dari product
         $this->productsModel = new ProductsModel();
     }
 
@@ -47,7 +47,7 @@ class Products extends BaseController
             'price' => 'required|integer',
             'description' => 'required'
         ])) {
-
+            //jika validasi gagal maka akan kembali ke menu create
             return redirect()->to('products/create')->withInput();
         }
 
@@ -57,12 +57,13 @@ class Products extends BaseController
         if ($image->getError() == 4) {
             $nameImage = 'default.jpg';
         } else {
+            //generate nama random untuk gambar
             $nameImage = $image->getRandomName();
-
+            //pindah gambar ke folder img
             $image->move('img', $nameImage);
         }
-
-        $this->productsModel->save([
+        //simpan data
+        $this->productsModel->insert([
             "name" => $this->request->getPost('name'),
             "price" => $this->request->getPost('price'),
             "image" => $nameImage,
@@ -70,7 +71,7 @@ class Products extends BaseController
         ]);
 
         session()->setFlashdata('pesan', 'berhasil tambah data');
-
+        //redirect ke menu product
         return redirect()->to('/products');
     }
 
@@ -82,8 +83,6 @@ class Products extends BaseController
             'validation' => \Config\Services::validation(),
             'product' => $this->productsModel->getProduct($id)
         ];
-        // dd($data);
-
         return view("pages/form_edit", $data);
     }
 
@@ -91,7 +90,6 @@ class Products extends BaseController
     {
 
         $image = $this->request->getFile('image');
-        // dd($image);
 
         //pindah file
         if ($image->getError() == 4) {
@@ -100,10 +98,9 @@ class Products extends BaseController
             $nameImage = $image->getRandomName();
 
             $image->move('img', $nameImage);
-
+            //hapus file di folder img
             unlink('img/' . $this->request->getVar('fileLama'));
         }
-        // dd($nameImage);
 
         $this->productsModel->save([
             "product_id" => $id,
@@ -120,17 +117,8 @@ class Products extends BaseController
 
     public function delete($id)
     {
-        //cari gambar berdasarkan id
-        $product = $this->productsModel->find($id);
-        dd($product);
-
-        if ($product['image'] != 'default.jpg') {
-            //hapus gambar di folder img
-            unlink('img/' . $product['image']);
-        }
-
-        // Kode untuk menghapus data dari database akan dituliskan di sini
-        $this->productsModel->delete($id);
+        
+        $this->productsModel->delProduct($id);
         session()->setFlashdata('pesan', 'berhasil hapus data');
         return redirect()->to('/products');
     }

@@ -23,8 +23,8 @@
                 </div>
             </div>
         <?php } ?>
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="d-flex justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4 ">
+            <div class="card d-flex justify-content-center ">
                 <a href="<?php echo site_url('products/create') ?>" class="btn btn-primary"><i></i>Add</a>
             </div>
         </div>

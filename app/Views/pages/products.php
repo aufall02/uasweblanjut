@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 <!-- Cards -->
-<div class="container">
+<div class="container ">
     <?php if (session()->getFlashdata('pesan')) : ?>
         <div class="alert alert-success" role="alert">
             <?= session()->getFlashdata('pesan') ?>
@@ -10,7 +10,7 @@
     <?php endif; ?>
     <div class="row g-4" data-aos="fade-up">
         <?php foreach ($products as $product) { ?>
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4 my-3">
                 <div class="card">
                     <img src="<?php echo base_url('img/' . $product['image']) ?>" class="card-img-top" alt="...">
                     <div class="card-body">

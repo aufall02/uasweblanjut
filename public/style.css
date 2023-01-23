@@ -220,8 +220,8 @@ li .nav-link:hover {
   padding: 20px;
   background-color: #2b2b2b;
   margin-top: 60px;
-  bottom: 0;
   display: flex;
+  
 }
 
 span {

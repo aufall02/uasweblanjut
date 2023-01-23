@@ -118,7 +118,7 @@ class Products extends BaseController
     public function delete($id)
     {
         
-        $this->productsModel->delProduct($id);
+        $this->productsModel->delete($id);
         session()->setFlashdata('pesan', 'berhasil hapus data');
         return redirect()->to('/products');
     }

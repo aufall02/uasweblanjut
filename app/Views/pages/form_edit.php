@@ -2,6 +2,7 @@
 <?= $this->section('content') ?>
 <!-- <div class="container-fluid"> -->
 	<h1><?= $title ?></h1>
+	
 	<div class="card mb-3">
 		<div class="card-header">
 			<a href="<?php echo site_url('/products') ?>"><i class="fas fa-arrow-left"></i> Back</a>
@@ -9,6 +10,7 @@
 		<div class="card-body">
 			<form action="/products/update/<?= $product['product_id'] ?>" method="post" enctype="multipart/form-data">
 				<?= csrf_field(); ?>
+				<input type="hidden" name="fileLama" id="fileLama" value=" <?= $product['image'] ?> ">
 				<div class="form-group">
 					<label for="name">Name*</label>
 					<input class="form-control <?= ($validation->hasError('name')) ? 'is-invalid' : ""; ?>" type="text" name="name" placeholder="Product name" value="<?= $product['name'] ?>" />
@@ -27,10 +29,10 @@
 
 
 				<div class="form-group my-2">
-					<label for="name">image</label>
-					<input class="form-control  <?= ($validation->hasError('image')) ? 'is-invalid' : ""; ?>" type="file" name="image" value="<?= $product['image'] ?>" />
-					<div class="invalid-feedback">
-						<?= $validation->getError('image') ?>
+					<label for="custom-file">image*</label>
+					<div class="custom-file">
+						<input type="file" class="image" id="image" name="image" onchange="labelImage()">
+						<label class="custom-file-label" for="image" ><?= $product['image'] ?></label>
 					</div>
 				</div>
 

@@ -26,10 +26,10 @@
 
 
 				<div class="form-group my-2">
-					<label for="name">image</label>
-					<input class="form-control  " type="file" name="image" value="<?= old('image') ?>" />
-					<div class="invalid-feedback">
-						<?= $validation->getError('image') ?>
+					<label for="custom-file">image*</label>
+					<div class="custom-file">
+						<input type="file" class="image" id="image" name="image" onchange="labelImage()">
+						<label class="custom-file-label" for="image" >Choose file</label>
 					</div>
 				</div>
 				<div class="form-group my-3">
@@ -39,7 +39,7 @@
 						<?php echo 'description' ?>
 					</div>
 				</div>
-				<input class="btn btn-success" type="submit" name="btn" value="Save" />
+				<input class="btn btn-primary" type="submit" name="btn" value="Save" />
 			</form>
 		</div>
 

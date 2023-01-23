@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ProductsModel;
-
+use CodeIgniter\HTTP\Request;
 
 class Products extends BaseController
 {
@@ -99,13 +99,16 @@ class Products extends BaseController
         $image = $this->request->getFile('image');
         //pindah file
         if ($image->getError()==4){
-            $nameImage = 'default.jpg';
+            $nameImage = $this->request->getVar('fileLama');
         }else{
             $nameImage = $image->getRandomName();
 
             $image->move('img', $nameImage);
 
+            unlink('img/' . $this->request->getVar('fileLama'));
+
         }
+        // dd($nameImage);
 
         $this->productsModel->save([
             "product_id" => $id,
@@ -124,10 +127,12 @@ class Products extends BaseController
     { 
         //cari gambar berdasarkan id
         $product = $this->productsModel->find($id);
+        dd($product);
 
-
+        if ($product['image'] != 'default.jpg'){
+            unlink('img/' . $product['image']);
+        }
         //hapus gambar
-        unlink('img/' . $product['image']);
 
         // Kode untuk menghapus data dari database akan dituliskan di sini
         $this->productsModel->delete($id);

@@ -23,7 +23,7 @@ class ProductsModel extends Model
             ],
         ],
     ];
-    
+
     //menampilkan product berdasarkan id jika ada
     public function getProduct($id = null)
     {
@@ -34,5 +34,4 @@ class ProductsModel extends Model
 
         return $this->where(['product_id' => $id])->first();
     }
-
 }

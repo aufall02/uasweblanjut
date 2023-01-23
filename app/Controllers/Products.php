@@ -14,7 +14,6 @@ class Products extends BaseController
     public function __construct()
     {
         $this->productsModel = new ProductsModel();
-
     }
 
 
@@ -25,7 +24,7 @@ class Products extends BaseController
             'title' => 'table buah',
             'products' => $this->productsModel->getProduct()
         ];
-        return view('pages/list', $data);
+        return view('pages/products', $data);
     }
 
 
@@ -37,8 +36,7 @@ class Products extends BaseController
             'title' => 'Add Product',
             'validation' => \Config\Services::validation()
         ];
-        // dd($data);
-        return view('pages/form_add',$data);
+        return view('pages/form_add', $data);
     }
 
     public function save()
@@ -47,30 +45,28 @@ class Products extends BaseController
         if (!$this->validate([
             'name' => 'required',
             'price' => 'required|integer',
-            // 'image' => 'required',
             'description' => 'required'
-        ])){
+        ])) {
 
             return redirect()->to('products/create')->withInput();
         }
 
-
         $image = $this->request->getFile('image');
+
         //pindah file
-        if ($image->getError()==4){
+        if ($image->getError() == 4) {
             $nameImage = 'default.jpg';
-        }else{
+        } else {
             $nameImage = $image->getRandomName();
 
             $image->move('img', $nameImage);
-
         }
- 
+
         $this->productsModel->save([
-            "name" =>$this->request->getPost('name'),
-            "price" =>$this->request->getPost('price'),
-            "image" =>$nameImage,
-            "description" =>$this->request->getPost('description'),
+            "name" => $this->request->getPost('name'),
+            "price" => $this->request->getPost('price'),
+            "image" => $nameImage,
+            "description" => $this->request->getPost('description'),
         ]);
 
         session()->setFlashdata('pesan', 'berhasil tambah data');
@@ -87,65 +83,55 @@ class Products extends BaseController
             'product' => $this->productsModel->getProduct($id)
         ];
         // dd($data);
-        
-        return view("pages/form_edit", $data);
 
-        
+        return view("pages/form_edit", $data);
     }
 
     public function update($id)
     {
-   
+
         $image = $this->request->getFile('image');
+        // dd($image);
+
         //pindah file
-        if ($image->getError()==4){
+        if ($image->getError() == 4) {
             $nameImage = $this->request->getVar('fileLama');
-        }else{
+        } else {
             $nameImage = $image->getRandomName();
 
             $image->move('img', $nameImage);
 
             unlink('img/' . $this->request->getVar('fileLama'));
-
         }
         // dd($nameImage);
 
         $this->productsModel->save([
             "product_id" => $id,
-            "name" =>$this->request->getPost('name'),
-            "price" =>$this->request->getPost('price'),
-            "image" =>$nameImage,
-            "description" =>$this->request->getPost('description'),
+            "name" => $this->request->getPost('name'),
+            "price" => $this->request->getPost('price'),
+            "image" => $nameImage,
+            "description" => $this->request->getPost('description'),
         ]);
-       
+
         session()->setFlashdata('pesan', 'berhasil update data');
         return redirect()->to('/products');
     }
 
 
     public function delete($id)
-    { 
+    {
         //cari gambar berdasarkan id
         $product = $this->productsModel->find($id);
         dd($product);
 
-        if ($product['image'] != 'default.jpg'){
+        if ($product['image'] != 'default.jpg') {
+            //hapus gambar di folder img
             unlink('img/' . $product['image']);
         }
-        //hapus gambar
 
         // Kode untuk menghapus data dari database akan dituliskan di sini
         $this->productsModel->delete($id);
         session()->setFlashdata('pesan', 'berhasil hapus data');
         return redirect()->to('/products');
-    }
-    
-    public function tampilkan(){
-        $data = [
-            'title' => 'table buah',
-            'products' => $this->productsModel->getProduct()
-        ];
-        // dd($data);
-        return view('pages/pricing', $data);
     }
 }

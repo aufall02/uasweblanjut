@@ -23,6 +23,17 @@ html {
   justify-content: center;
 }
 
+.navbar {
+  background-color: #f2aa3d;
+  box-shadow: 0px 0px 21px 10px rgba(0, 0, 0, 0.076);
+  z-index: 3;
+}
+
+.navbar h4 {
+  color: #2f2f2f;
+  line-height: 5px;
+}
+
 p.price {
   font-family: "Inter", sans-serif;
   font-weight: 700;
@@ -166,15 +177,12 @@ li .nav-link:hover {
 }
 
 .btn-secondary {
-  margin-top: 20px;
+  margin-top: 15px 10py;
   background-color: #f2aa3d;
   border-style: none;
-  width: 200px;
-  height: 70px;
-  font-size: 24px;
   font-weight: 700;
   color: #2b2b2b;
-  border-radius: 13px;
+  border-radius: 10px;
   filter: drop-shadow(0px 0px 17px rgba(0, 0, 0, 0.2));
 }
 
@@ -220,6 +228,10 @@ span {
 .footer a {
   text-decoration: none;
   color: #fff;
+}
+.navbar-brand a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
 
 .card {

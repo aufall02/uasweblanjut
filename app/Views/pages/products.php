@@ -3,6 +3,11 @@
 
 <!-- Cards -->
 <div class="container">
+    <?php if (session()->getFlashdata('pesan')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('pesan') ?>
+        </div>
+    <?php endif; ?>
     <div class="row g-4" data-aos="fade-up">
         <?php foreach ($products as $product) { ?>
             <div class="col-12 col-md-6 col-lg-4">
@@ -12,11 +17,17 @@
                         <h5 class="card-title"> <?php echo $product['name'] ?></h5>
                         <p class="card-text"> <?php echo $product['description'] ?>h!</p>
                         <p class="price">Rp <?php echo $product['price'] ?></p>
-                        <a href="https://shopee.co.id/Kaos-distro-Hobbeys-Ride-With-Passion-i.366030836.3972722486?sp_atk=26a11508-e6d2-4e8c-9e1d-30678354be7b&xptdk=26a11508-e6d2-4e8c-9e1d-30678354be7b" class="btn btn-primary" target="_blank">Get it on Shopee</a>
+                        <a href="<?php echo site_url('products/edit/' . $product['product_id']) ?>" class="btn btn-primary">Edit</a>
+                        <a href="<?php echo site_url('products/delete/' . $product['product_id']) ?>" class="btn btn-secondary">Delete</a>
                     </div>
                 </div>
             </div>
         <?php } ?>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="d-flex justify-content-center">
+                <a href="<?php echo site_url('products/create') ?>" class="btn btn-primary"><i></i>Add</a>
+            </div>
+        </div>
     </div>
 </div>
 

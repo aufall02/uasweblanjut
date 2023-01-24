@@ -7,13 +7,16 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav ">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="dashboard">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/products">Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  href="#">Register/Login</a>
+          <a class="nav-link"  href="login">Register/Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  href="login/logout">logout</a>
         </li>
       </ul>
     </div>

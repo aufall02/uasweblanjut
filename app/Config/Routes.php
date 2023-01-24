@@ -38,7 +38,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('tampilkan', 'Products::tampilkan');
 $routes->get('products', 'Products::index');
-$routes->get('register', 'User::index');
+$routes->get('register', 'Register::index');
+// $routes->get('login', 'User::login');
 // $routes->post('products/edit/(:num)', 'Products::update/$1');
 
 

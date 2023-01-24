@@ -88,6 +88,15 @@ class Products extends BaseController
 
     public function update($id)
     {
+        //validasi
+        if (!$this->validate([
+            'name' => 'required',
+            'price' => 'required|integer',
+            'description' => 'required'
+        ])) {
+            //jika validasi gagal maka akan kembali ke menu create
+            return redirect()->to('products/create')->withInput();
+        }
 
         $image = $this->request->getFile('image');
 
@@ -117,7 +126,7 @@ class Products extends BaseController
 
     public function delete($id)
     {
-        
+
         $this->productsModel->delete($id);
         session()->setFlashdata('pesan', 'berhasil hapus data');
         return redirect()->to('/products');

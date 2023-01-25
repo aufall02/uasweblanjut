@@ -1,17 +1,46 @@
 
-# Uas Pemograman web lanjut
+![Logo](https://mubatekno.com/wp-content/uploads/2021/08/ci4-cover.png)
 
-Nama    : Aufal Marom \
-Nim     : 210403010034
 
-## Cara Instalasi
-- install composer
-- clone github repo dengan cara `https://github.com/aufall02/uasweblanjut.git`
-- masuk ke dalam folder hasil clone dengan `cd uasweblanjut/`
-- install semua dependencies dari codeigniter `composer i`
-- aktifkan xampp
-- buat database dengan menggunakan perintah `php spark db:create tokobuah`
-- lakukan migrasi (membuat tabel secara otomatis) dengan menggunakan perintah `php spark migrate`
-- alankan codeigniter app dengan menggunakan perintah `php spark serve`
-- jalankan aplikasi
-- kalau sudah muncul tampilan awl codeigniter klik menu toko buah
+# Toko buah
+
+Project yang saya buat untuk memenuhi tugas UAS Pemrogaman Web Lanjut.
+
+
+## Requirement
+- Xampp(for PHP and MySQL)
+- Composer
+## Deployment
+
+Silahkan clone project ini dan ikuti tutorial dibawah :
+
+```bash
+  composer install
+```
+Buat database dengan nama tokobuah
+```bash
+  php spark db:create tokobuah
+```
+Jalankan migrate database nya.
+```bash
+  php spark migrate
+```
+Jalankan seeder untuk data dummy database.
+```bash
+  php spark db:seed Users
+  php spark db:seed Products
+```
+Default login seeder adalah :
+```bash
+  email : test@gmail.com || password : aufal
+```
+Terimakasih.
+
+
+
+
+
+## Author
+
+- [@aufall02](https://github.com/aufall02/)
+

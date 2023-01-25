@@ -5,9 +5,8 @@ Nama    : Aufal Marom \
 Nim     : 210403010034
 
 ## Cara Instalasi
-
+- install composer
 - clone github repo dengan cara `https://github.com/aufall02/uasweblanjut.git`
-
 - masuk ke dalam folder hasil clone dengan `cd uasweblanjut/`
 - install semua dependencies dari codeigniter `composer i`
 - aktifkan xampp

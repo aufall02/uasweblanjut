@@ -30,7 +30,7 @@
                         <input type="password" name="password" class="form-control" id="InputForPassword">
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
-                    <a href="register">belum punya ayang</a>
+                    <a href="register">belum punya akun</a>
                 </form>
             </div>
 
